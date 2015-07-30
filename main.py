@@ -29,7 +29,7 @@ working = True
 
 if (Run == True):
 	#Opening the database
-	db = MySQLdb.connect("localhost","root","220397","Genes")
+	db = MySQLdb.connect("localhost","root","root","Genes")
 	cursor = db.cursor()
 	#Genome table
 	sql = "INSERT INTO genoma(arquivo) VALUES ('%s')"%(arquivo)
@@ -43,9 +43,14 @@ if (Run == True):
 	if (working == True):
 		for sizeBlock in range (minSize, maxSize+1):
 			#Batery Table
-			sql = "SELECT * FROM genoma WHERE = id_genoma(select max(id_genoma) from geonoma)"
-			idg = cursor.fetchall()
-			sql = "INSERT INTO bateria(id_genoma, tamanho_bloco) VALUES ('%s')"%(id_genoma, sizeBlock)
+			cursor.execute("SELECT max(id_genoma) FROM genoma")
+			resultadoDoSelect = cursor.fetchone()
+			id_genoma = resultadoDoSelect[0]
+			print("id_genoma: " + str(id_genoma))
+
+			sql = "INSERT INTO bateria (id_genoma, tamanho_bloco) VALUES (%d,%d)"%(id_genoma, sizeBlock)
+			cursor.execute(sql)
+
 			try:
 				cursor.execute(sql)
 				db.commit()
