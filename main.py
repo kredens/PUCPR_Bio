@@ -61,10 +61,12 @@ if (Run == True):
 			if (working == True):
 				for startPosition in range (0, sizeBlock):
 					#Execucao Table
-					sql = "SELECT * FROM bateria WHERE = id_bateria(select max(id_bateria) from bateria)"
-					idg = cursor.fetchall()
-					id_bateria = idg[0]
-					sql = "INSERT INTO execucao(id_bateria, deslocamento) VALUES ('%d, %d')"%(id_bateria, startPosition)
+					cursor.execute("SELECT max(id_bateria) FROM bateria")
+					resultadoDoSelect = cursor.fetchone()
+					id_bateria = resultadoDoSelect[0]
+					print("id_bateria: " + str(id_bateria))
+
+					sql = "INSERT INTO execucao (id_bateria, deslocamento) VALUES (%d, %d)"%(id_bateria, startPosition)
 					try:
 						cursor.execute(sql)
 						db.commit()
@@ -76,25 +78,27 @@ if (Run == True):
 						posCriar = verificarbloco(sizeBlock,len(stringNative),startPosition)
 						if (posCriar == True):
 							stringFinal = newlist(sizeBlock, startPosition, stringNative)
+							cursor.execute("SELECT max(id_execucao) FROM execucao")
+							resultadoDoSelect = cursor.fetchone()
+							id_execucao = resultadoDoSelect[0]
+							print("id_execucao: " + str(id_execucao))
 							for v in range (0, len(stringFinal)):
 								if (working == True):
-									sql = "SELECT * FROM execucao WHERE = id_execucao(select max(id_execucao) from execucao)"
-									idg = cursor.fetchall()
-									id_execucao = idg[0]
+									print("New Bloco \n")
 									if (v == 0):
 										if (startPosition == 0):
-											sql = "INSERT INTO bloco(id_execucao, arquivo, bloco_posicao, bloco_tamanho) \
-											VALUES ('%d, %s, %d, %d')"%(id_execucao, stringFinal[v], startPosition, sizeBlock)
+											sql = "INSERT INTO bloco (id_execucao, arquivo, bloco_posicao, bloco_tamanho) \
+											VALUES (%d, '%s', %d, %d)"%(id_execucao, stringFinal[v], startPosition, sizeBlock)
 										else:
-											sql = "INSERT INTO bloco(id_execucao, arquivo, bloco_posicao, bloco_tamanho) \
-											VALUES ('%d, %s, %d, %d')"%(id_execucao, stringFinal[v], startPosition, startPosition)
+											sql = "INSERT INTO bloco (id_execucao, arquivo, bloco_posicao, bloco_tamanho) \
+											VALUES (%d, '%s', %d, %d)"%(id_execucao, stringFinal[v], startPosition, startPosition)
 									else:
-										if(v == (len(stringFinal - 1))):
-											sql = "INSERT INTO bloco(id_execucao, arquivo, bloco_posicao, bloco_tamanho) \
-											VALUES ('%d, %s, %d, %d')"%(id_execucao, stringFinal[v], startPosition, len(stringFinal[v]))
+										if(v == (len(stringFinal)-1)):
+											sql = "INSERT INTO bloco (id_execucao, arquivo, bloco_posicao, bloco_tamanho) \
+											VALUES (%d, '%s', %d, %d)"%(id_execucao, stringFinal[v], startPosition, len(stringFinal[v]))
 										else:
-											sql = "INSERT INTO bloco(id_execucao, arquivo, bloco_posicao, bloco_tamanho) \
-											VALUES ('%d, %s, %d, %d')"%(id_execucao, stringFinal[v], startPosition, sizeBlock)
+											sql = "INSERT INTO bloco (id_execucao, arquivo, bloco_posicao, bloco_tamanho) \
+											VALUES (%d, '%s', %d, %d)"%(id_execucao, stringFinal[v], startPosition, sizeBlock)
 								try:
 									cursor.execute(sql)
 									db.commit()
