@@ -26,6 +26,7 @@ for conteudo_linhaAtual in arquivoEntrada:
 stringNative = list(stringNative.upper())
 Run = verificarEntrada (minSize, maxSize)
 working = True
+errordata = ""
 
 if (Run == True):
 	#Opening the database
@@ -39,6 +40,7 @@ if (Run == True):
 	except:
 		db.rollback()
 		working = False
+		errordata = errordata + "-Line 43 - Error creating the table GENOME \n"
 
 	if (working == True):
 		for sizeBlock in range (minSize, maxSize+1):
@@ -57,9 +59,11 @@ if (Run == True):
 			except:
 				db.rollback()
 				working = False
+				errordata = errordata + "-Line 62 - Error creating the table BATERIA \n"
 
 			if (working == True):
 				for startPosition in range (0, sizeBlock):
+					print("New Execution \n")
 					control = 0
 					#Execucao Table
 					cursor.execute("SELECT max(id_bateria) FROM bateria")
@@ -74,6 +78,7 @@ if (Run == True):
 					except:
 						db.rollback()
 						working = False
+						errordata = errordata + "-Line 81 - Error creating the table EXECUCAO \n"
 
 					if (working == True):
 						posCriar = verificarbloco(sizeBlock,len(stringNative),startPosition)
@@ -87,7 +92,6 @@ if (Run == True):
 								if (working == True):
 									arq = stringFinal[v] + "\t" + str(control)
 									control = control + len(stringFinal[v])
-									print("New Bloco \n")
 									if (v == 0):
 										if (startPosition == 0):
 											sql = "INSERT INTO bloco (id_execucao, arquivo, bloco_posicao, bloco_tamanho) \
@@ -108,8 +112,10 @@ if (Run == True):
 								except:
 									db.rollback()
 									working = False
+									errordata = errordata + "-Line 115 - Error creating the table BLOCO \n"
 else:
 	print ("This values are not possible")
 if (working == False):
-	print("AN ERROR HAS OCCORED WHILE ACESSING THE DATABASE")
+	print("AN ERROR HAS OCCORED WHILE ACESSING THE DATABASE\n")
+	print(errordata)
 db.close()
