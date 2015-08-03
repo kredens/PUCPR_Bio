@@ -1,0 +1,49 @@
+/home/experimentoCompressao/datasets/pair/cerevisiae/sacCer3/sacCer3.fasta /home/experimentoCompressao/datasets/pair/cerevisiae/sacCer2/sacCer2.fasta
+NUCMER
+
+    [P1]  [SUB]  [P2]      |   [BUFF]   [DIST]  | [FRM]  [TAGS]
+===================================================================
+    3834   . C   3835      |      146     3834  |  1  1  chrI   chrI
+    3980   T A   3981      |        1     3980  |  1  1  chrI   chrI
+    3981   A T   3982      |        1     3981  |  1  1  chrI   chrI
+    5243   A G   5244      |      683     5243  |  1  1  chrI   chrI
+    5926   G .   5926      |      527     5926  |  1  1  chrI   chrI
+    6453   . C   6454      |      527     6453  |  1  1  chrI   chrI
+   28066   . T   28068     |      885    28066  |  1  1  chrI   chrI
+   28951   T .   28952     |      885    28951  |  1  1  chrI   chrI
+   36119   A C   36120     |      694    36119  |  1  1  chrI   chrI
+   36813   C A   36814     |      694    36813  |  1  1  chrI   chrI
+   40230   G C   40231     |     1009    40230  |  1  1  chrI   chrI
+   41239   G A   41240     |      424    41239  |  1  1  chrI   chrI
+   41663   G T   41664     |       36    41663  |  1  1  chrI   chrI
+   41699   A C   41700     |        3    41699  |  1  1  chrI   chrI
+   41702   A C   41703     |        3    41702  |  1  1  chrI   chrI
+   46230   G C   46231     |      602    46230  |  1  1  chrI   chrI
+   46832   A G   46833     |      602    46832  |  1  1  chrI   chrI
+   47820   A T   47821     |        5    47820  |  1  1  chrI   chrI
+   47825   T C   47826     |        5    47825  |  1  1  chrI   chrI
+   48771   A T   48772     |      946    48771  |  1  1  chrI   chrI
+   49903   A C   49904     |      423    49903  |  1  1  chrI   chrI
+   50326   A C   50327     |      423    50326  |  1  1  chrI   chrI
+   55745   G A   55746     |      208    55745  |  1  1  chrI   chrI
+   55953   T A   55954     |      208    55953  |  1  1  chrI   chrI
+   62766   G A   62767     |     6813    62766  |  1  1  chrI   chrI
+   70793   G C   70794     |       80    70793  |  1  1  chrI   chrI
+   70873   G A   70874     |       80    70873  |  1  1  chrI   chrI
+   96739   C G   96740     |       97    96739  |  1  1  chrI   chrI
+   96836   . C   96838     |        4    96836  |  1  1  chrI   chrI
+   96840   C .   96841     |        4    96840  |  1  1  chrI   chrI
+   97024   T A   97025     |        1    97024  |  1  1  chrI   chrI
+   97025   A T   97026     |        1    97025  |  1  1  chrI   chrI
+   97677   G C   97678     |        1    97677  |  1  1  chrI   chrI
+   97678   G C   97679     |        1    97678  |  1  1  chrI   chrI
+   98349   G C   98350     |        1    98349  |  1  1  chrI   chrI
+   98350   C G   98351     |        1    98350  |  1  1  chrI   chrI
+   99561   . A   99563     |        3    99561  |  1  1  chrI   chrI
+   99564   G .   99565     |        3    99564  |  1  1  chrI   chrI
+   99840   T A   99841     |      276    99840  |  1  1  chrI   chrI
+  100398   C G   100399    |      558   100398  |  1  1  chrI   chrI
+  110469   G C   110470    |        1   110469  |  1  1  chrI   chrI
+  110470   C G   110471    |        1   110470  |  1  1  chrI   chrI
+  113701   G C   113702    |        1   113701  |  1  1  chrI   chrI
+  113702   C G   113703    |        1   113702  |  1  1  chrI   chrI
