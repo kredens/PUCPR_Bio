@@ -1,6 +1,7 @@
 import os.path
 import argparse
 import shutil #Deletar pastas
+import numpy
 from tools.sdb.sdbmain import sdb
 from tools.funcoesshell import nameAllfiles
 from tools.funcoesshell import palavrasPrincipais
@@ -20,43 +21,46 @@ desviomax = args.desviomax
 '''
 ESCREVER CODIGO PARA EXCLUIR PASTA TEMP E RESULTS CASO EXISTAM
 '''
+#Localizando o endereco atual
+address = os.getcwd()
 os.makedirs(address + "/temp")
 os.makedirs(address + "/RESULTS")
 #CriandoPastacomResultados
 if(minblock <= maxblock and minblock > 0):
-	#Localizando o endereco atual
-	address = os.getcwd()
 	#Descobrindo o numero de arquivos de genomas
-	numArquivosEntrada = nameAllfiles(address, "/ENTERFILES", "allFilesName")
+	print(address+"/ENTERFILES")
+	numArquivosEntrada = nameAllfiles(address, "ENTERFILES", "allFilesName")
 	#Iniciando o processamento para cada um dos arquivos
 	if (numArquivosEntrada != 0):
 		allFilesName = open(address + "/temp/allFilesName.txt")
 		relatorioPrincipal = open(address+"/RESULTS/MainResults.txt", 'w')
+		relatorioPrincipal.write("MAIN RESULTS:\n")
 		for arquivoAtual in allFilesName:
 			print("Arquivo sendo processado:"+arquivoAtual)
 			#Criando Arquivo de Resultado para Este Genoma
 			f = open(address+"/RESULTS/"+"R_"+arquivoAtual+".txt", 'w')
 			f.write("RESULTADOS DO ARQUIVOS: "+arquivoAtual+"\n"+"*"*10+"\n")
 			#Separando em blocos dos tamanhos minimo e maximo
-			numArquivosBlocos = sdb(minblock,maxblock,arquivoAtual)
+			numArquivosBlocos = sdb(minblock,maxblock,"ENTERFILES/"+arquivoAtual[:-1])
 			#Descobrindo o nome dos arquivos com blocos
-			nameAllfiles(address, "/temp/RD", "allBlocksFiles")
+			nameAllfiles(address, "temp/RD", "allBlocksFiles")
 			allBlocksFiles = open(address + "/temp/allBlocksFiles.txt")
 			for arquivoBlocoAtual in allBlocksFiles:
 				#Descobrindo as palavras Principais
 				palavrasPrincipais(arquivoBlocoAtual, address)
 				listaPalavras = open(address + "temp/MostUsedWords/"+arquivoBlocoAtual+".txt")
-				for palavraAtual in listaPalavras
-				#Achando as ocorrencias da palavra
-				listaPosicoes = achaPosicaoPalavraNoTexto(palavraAtual, arquivoBlocoAtual, address)
-				if (len(listaPosicoes) > 2):
-				'''
-				retorne o desvio padrao
-				'''
-				else:
-				'''
-				nao ha desvio padrao
-				'''
+				for palavraAtual in listaPalavras:
+					#Achando as ocorrencias da palavra
+					listaPosicoes = achaPosicaoPalavraNoTexto(palavraAtual[:-1], arquivoBlocoAtual, address)
+					numeroDeVezesQueAparece = len(listaPosicoes)
+					#Caso tenha aparecido apenas uma ou duas vezes nao ha como calcular o desvio padrao
+					if (numeroDeVezesQueAparece > 2):
+						devPadrao = numpy.std(listaPosicoes)
+						f.write("***Block (Size/Deplacement): "+arquivoBlocoAtual+", Genome Block: "+palavraAtual+", Std Deviation: "+str(devPadrao)+"\n")
+						if (devPadrao <= desviomax):
+							relatorioPrincipal.write("***Genome: "+arquivoAtual+". Block (Size/Deplacement): "+arquivoBlocoAtual+", Genome Block: "+palavraAtual+", Std Deviation: "+str(devPadrao)+"\n")
+					f.write("\n"+"*"*3+"\n")
+			shutil.rmtree(address + "/temp/RD")	
 
 
 	else:
