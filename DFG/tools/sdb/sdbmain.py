@@ -4,8 +4,8 @@
 def sdb(minSize, maxSize, arquivo):
 	import os.path
 	import argparse
-	from sdb.listConstructor import newlist
-	from sdb.VerifTamDoBloco import verificarbloco
+	from tools.sdb.listConstructor import newlist
+	from tools.sdb.VerifTamDoBloco import verificarbloco
 
 	stringNative = ""
 	arquivoEntrada = open(arquivo, 'r')
