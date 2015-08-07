@@ -22,10 +22,10 @@ def nameAllfiles (address, TargetDir, exitname):
 	except:
 		return 0
 	for conteudo_linhaAtual in arquivoEntrada:
-		numberoArq = numberoArq + 1
 		if (conteudo_linhaAtual[0] == "t"):
 			conteudo_linhaAtual.strip()
 		else:
+			numberoArq = numberoArq + 1
 			posicao = conteudo_linhaAtual.rfind(" ")
 			newfile.write(conteudo_linhaAtual[posicao+1:])
 			conteudo_linhaAtual.strip()
@@ -46,7 +46,3 @@ def achaPosicaoPalavraNoTexto (palavra, arquivoTarget ,address):
 		conteudo_linhaAtual.strip()
 	os.remove(address+"/temp/posicao.txt")
 	return positionList
-		
-
-
-			
