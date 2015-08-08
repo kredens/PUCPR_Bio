@@ -2,7 +2,7 @@
 #Cria como saida um texto com o a palavra e o numero de vezes em que esta palavra apareceu
 def palavrasPrincipais (ArquivoEntrada, address):
 	import os.path
-	os.makedirs(address + "temp/MostUsedWords", 777)
+	os.makedirs(address + "/temp/MostUsedWords", 777)
 	try:
 		os.system("cut -f 1 RD/"+ArquivoEntrada+".txt | sort | uniq -c | sort -g | tail > temp/MostUsedWords/"+ArquivoEntrada+".txt")
 	except:
