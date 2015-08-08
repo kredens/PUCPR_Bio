@@ -47,8 +47,8 @@ if(minblock <= maxblock and minblock > 0):
 			allBlocksFiles = open(address + "/temp/allBlocksFiles.txt")
 			for arquivoBlocoAtual in allBlocksFiles:
 				#Descobrindo as palavras Principais
-				palavrasPrincipais(arquivoBlocoAtual, address)
-				listaPalavras = open(address + "temp/MostUsedWords/"+arquivoBlocoAtual+".txt")
+				padlavrasPrincipais(arquivoBlocoAtual, address)
+				listaPalavras = open(address + "/temp/MostUsedWords/"+arquivoBlocoAtual+".txt")
 				for palavraAtual in listaPalavras:
 					#Achando as ocorrencias da palavra
 					listaPosicoes = achaPosicaoPalavraNoTexto(palavraAtual[:-1], arquivoBlocoAtual, address)
