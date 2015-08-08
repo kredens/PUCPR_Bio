@@ -60,7 +60,6 @@ if(minblock <= maxblock and minblock > 0):
 						if (devPadrao <= desviomax):
 							relatorioPrincipal.write("***Genome: "+arquivoAtual[:-1]+", Block (Size/Deplacement): "+arquivoBlocoAtual[:-1]+\
 								", Genome Block: "+palavraAtual[:-1]+", Std Deviation: "+str(devPadrao)+"\n")
-					f.write("\n")
 			shutil.rmtree(address + "/temp/RD")	
 	else:
 		print("ERRO FINDING THE ENTERFILES, BE SURE ALL FILES IN THE ENTERFILES DIRC ARE GENOME FASTA FILES")
