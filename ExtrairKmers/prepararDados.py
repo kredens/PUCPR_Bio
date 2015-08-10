@@ -10,7 +10,7 @@ db = client.palavras_database
 # para cada DESLOCAMENTO
 deslocamentos = db.palavras.distinct( "deslocamentoAtual" )
 for deslocamento in deslocamentos:
-	print deslocamento
+	print("Deslocamento..: " + str(deslocamento))
 
 #palavras = db.palavras.find()
 #for palavra in palavras:
