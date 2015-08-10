@@ -6,7 +6,7 @@ client = MongoClient('localhost', 27017)
 db = client.palavras_database
 
 #recuperar kmers com aparição maior que 2
-palavras = db.palavras.findOne()
+palavras = db.palavras.find()
 for palavra in palavras:
     print(palavra)
 
