@@ -60,9 +60,9 @@ if(minblock <= maxblock and minblock > 0):
 						if (devPadrao <= desviomax):
 							relatorioPrincipal.write("***Genome: "+arquivoAtual[:-1]+", Block (Size/Deplacement): "+arquivoBlocoAtual[:-1]+\
 								", Genome Block: "+palavraAtual[:-1]+", Std Deviation: "+str(devPadrao)+"\n")
-			shutil.rmtree(address + "/temp/RD")	
+			#shutil.rmtree(address + "/temp/RD")	
 	else:
 		print("ERRO FINDING THE ENTERFILES, BE SURE ALL FILES IN THE ENTERFILES DIRC ARE GENOME FASTA FILES")
 else:
 	print("THE MINIMUM SIZE MUST BE, AT LEST AS BIG AS THE MAXIMUM SIZE, AND IT CANNOT BE IQUAL TO 0")
-shutil.rmtree(address + "/temp")
+#shutil.rmtree(address + "/temp")

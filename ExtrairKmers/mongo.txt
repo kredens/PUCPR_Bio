@@ -8,7 +8,36 @@ show collections
 db.palavras.count()
 
 -- buscar
-db.palavras.find( { palavra: 'ATGC' } )
+db.palavras.find( { palavra: 'GCGCAGTTAA' },  { deslocamentoAtual: 1, posicaoInicio: 1 } )
+db.palavras.find( { palavra: 'GCGCAGTTAA' },  { deslocamentoAtual: 1 } )
+db.palavras.find( { deslocamentoAtual: 1 } )
+
+db.palavras.group(
+{
+	key: { 'palavra': 1 } , 
+	cond: { deslocamentoAtual: 0 },
+	reduce: function( curr, result ) {
+                 result.total ++;
+             },
+    initial: { total : 0 },
+}
+)
+
+var resultado = db.palavras.aggregate( [
+	{ $match: { deslocamentoAtual: 0 } },
+	{ $group: { _id: "$palavra", qtd : { $sum : 1 } } },
+	{ $match: { qtd: {"$gt": 2} } }
+] )
+db.palavrasFrequentes.drop()
+db.palavrasFrequentes.insert(resultado.result);
+
+-- distinct
+db.palavras.distinct( "deslocamentoAtual" )
+
+
+db.palavras.find( { deslocamentoAtual:0 } ).count()
+db.palavras.find
+
 
 -- ver o formato 
 db.palavras.findOne()
@@ -16,8 +45,12 @@ db.palavras.findOne()
 -- apagar um collection
 db.palavras.drop()
 
-db.palavras.find( { deslocamentoAtual:0 } ).count()
+
+
+
+
 db.palavras.createIndex( { "deslocamentoAtual" : 1 } )
+db.palavras.createIndex( { "palavra" : 1 } )
 
 db.palavras.help()
 
