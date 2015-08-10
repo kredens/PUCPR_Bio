@@ -6,9 +6,9 @@ client = MongoClient('localhost', 27017)
 db = client.palavras_database
 
 # Config
-cfg_tamanhoPalavra = 4
+cfg_tamanhoPalavra = 10
 
-arquivoEntrada = open('273614N.fasta', 'r')
+arquivoEntrada = open('NC_017651.1.fasta', 'r')
 
 jahPegouPrimeiraLinha = False
 conteudo_DNA = ""

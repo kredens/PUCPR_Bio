@@ -4,6 +4,8 @@ show collections
 
 use palavras_database
 
+
+
 -- apagar um collection
 db.palavras.drop()
 
