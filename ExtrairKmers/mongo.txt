@@ -1,19 +1,20 @@
 
 show dbs
+use palavras_database
 show collections
 
-use palavras_database
 
+-- contar
+db.palavras.count()
 
+-- buscar
+db.palavras.find( { palavra: 'ATGC' } )
+
+-- ver o formato 
+db.palavras.findOne()
 
 -- apagar um collection
 db.palavras.drop()
-
-
-
-db.palavras.find( { palavra: 'ATGC' } )
-
-db.palavras.count()
 
 db.palavras.find( { deslocamentoAtual:0 } ).count()
 db.palavras.createIndex( { "deslocamentoAtual" : 1 } )
