@@ -1,0 +1,21 @@
+
+show dbs
+show collections
+
+use palavras_database
+
+-- apagar um collection
+db.palavras.drop()
+
+
+
+db.palavras.find( { palavra: 'ATGC' } )
+
+db.palavras.count()
+
+db.palavras.find( { deslocamentoAtual:0 } ).count()
+db.palavras.createIndex( { "deslocamentoAtual" : 1 } )
+
+db.palavras.help()
+
+db.palavras.find( { deslocamentoAtual:0,  } )
