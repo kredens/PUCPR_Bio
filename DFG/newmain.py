@@ -38,7 +38,7 @@ if(minblock <= maxblock and minblock > 0):
 		for arquivoAtual in allFilesName:
 			print("Arquivo sendo processado:"+arquivoAtual)
 			#Criando Arquivo de Resultado para Este Genoma
-			f = open(address+"/RESULTS/"+"R_"+arquivoAtual+".txt", 'w')
+			f = open(address+"/RESULTS/"+"R_"+arquivoAtual[:-1]+".txt", 'w')
 			f.write("RESULTADOS DO ARQUIVOS: "+arquivoAtual+"\n"+"*"*10+"\n")
 			#Separando em blocos dos tamanhos minimo e maximo
 			numArquivosBlocos = sdb(minblock,maxblock,"ENTERFILES/"+arquivoAtual[:-1])
@@ -56,7 +56,7 @@ if(minblock <= maxblock and minblock > 0):
 					#Caso tenha aparecido apenas uma ou duas vezes nao ha como calcular o desvio padrao
 					if (numeroDeVezesQueAparece > 2):
 						devPadrao = numpy.std(listaPosicoes)
-						f.write("***Block (Size/Deplacement): "+arquivoBlocoAtual[:-1]+", Genome Block: "+palavraAtual[:-1]+", Std Deviation: "+str(devPadrao)+"\n")
+						f.write("***Block (Size/Deplacement): "+arquivoBlocoAtual[:-1]+", Genome Block: "+palavraAtual[:-1]+", Aparições: "+str(numeroDeVezesQueAparece)+" ,Std Deviation: "+str(devPadrao)+"\n")
 						if (devPadrao <= desviomax):
 							relatorioPrincipal.write("***Genome: "+arquivoAtual[:-1]+", Block (Size/Deplacement): "+arquivoBlocoAtual[:-1]+\
 								", Genome Block: "+palavraAtual[:-1]+", Std Deviation: "+str(devPadrao)+"\n")
