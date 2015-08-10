@@ -6,9 +6,15 @@ client = MongoClient('localhost', 27017)
 db = client.palavras_database
 
 #recuperar kmers com aparição maior que 2
-palavras = db.palavras.find()
-for palavra in palavras:
-    print(palavra)
+
+# para cada DESLOCAMENTO
+deslocamentos = db.palavras.distinct( "deslocamentoAtual" )
+for deslocamento in deslocamentos:
+	print deslocamento
+
+#palavras = db.palavras.find()
+#for palavra in palavras:
+#    print(palavra)
 
 #calcular DP para cada kmer
 
