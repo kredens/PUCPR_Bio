@@ -2,7 +2,8 @@
 #Cria como saida um texto com o a palavra e o numero de vezes em que esta palavra apareceu
 def palavrasPrincipais (ArquivoEntrada, address):
 	import os.path
-	os.system("cut -f 1 temp/RD/"+ArquivoEntrada+" | sort | uniq -c | sort -g | cat > temp/MostUsedWordsFILE.txt")
+	#os.system("cut -f 1 temp/RD/"+ArquivoEntrada+" | sort | uniq -c | sort -g | tail > temp/MostUsedWordsFILE.txt")
+	os.system("cut -f 1 temp/RD/"+ArquivoEntrada+" | sort | uniq -c -d | sort -g > temp/MostUsedWordsFILE.txt")
 	File1 = open(address+"/temp/MostUsedWordsFILE.txt")
 	newfile = open(address+"/temp/MostUsedWords_"+ArquivoEntrada, "w+")
 	for linhaatual in File1:
