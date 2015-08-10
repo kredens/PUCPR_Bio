@@ -56,10 +56,10 @@ if(minblock <= maxblock and minblock > 0):
 					#Caso tenha aparecido apenas uma ou duas vezes nao ha como calcular o desvio padrao
 					if (numeroDeVezesQueAparece > 2):
 						devPadrao = numpy.std(listaPosicoes)
-						f.write("***Block (Size/Deplacement): "+arquivoBlocoAtual[:-1]+", Genome Block: "+palavraAtual[:-1]+", Aparições: "+str(numeroDeVezesQueAparece)+" ,Std Deviation: "+str(devPadrao)+"\n")
+						f.write("***Block (Size/Deplacement): "+arquivoBlocoAtual[:-1]+", Genome Block: "+palavraAtual[:-1]+", qtd: "+str(numeroDeVezesQueAparece)+" ,Std Deviation: "+str(devPadrao)+"\n")
 						if (devPadrao <= desviomax):
 							relatorioPrincipal.write("***Genome: "+arquivoAtual[:-1]+", Block (Size/Deplacement): "+arquivoBlocoAtual[:-1]+\
-								", Genome Block: "+palavraAtual[:-1]+", Std Deviation: "+str(devPadrao)+"\n")
+								", Genome Block: "+palavraAtual[:-1]+", qtd: "+str(numeroDeVezesQueAparece)+" ,Std: "+str(devPadrao)+"\n")
 			#shutil.rmtree(address + "/temp/RD")	
 	else:
 		print("ERRO FINDING THE ENTERFILES, BE SURE ALL FILES IN THE ENTERFILES DIRC ARE GENOME FASTA FILES")
