@@ -8,6 +8,8 @@ parser.add_argument("-a", action="store_true")
 #args = parser.parse_args()
 args = parser.parse_known_args()
 
+print("Processando arquivo: " + arquivo)
+
 if ( args[0].a ):
 	arquivo = str(args[0])
 else:
