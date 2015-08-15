@@ -7,15 +7,20 @@ parser = argparse.ArgumentParser()
 parser.add_argument("-a", action="store_true")
 #args = parser.parse_args()
 args = parser.parse_known_args()
-arquivoEntrada = str(args[0])
-print("Processando arquivo: " + arquivoEntrada)
 
-#arquivo = input("Nome do Arquivo: ")
-#arquivoEntrada = open(arquivo, 'r')
+if ( args[0].a ):
+	arquivo = str(args[0])
+else:
+	#para perguntar qual o nome do arquivo
+	arquivo = input("Nome do Arquivo: ")
+
+#abrir o arquivo
+arquivoEntrada = open(arquivo, 'r')
 
 conteudo_DNA = ""
 cabecalhos = ""
 
+print("Processando arquivo: " + arquivo)
 for conteudo_linhaAtual in arquivoEntrada:
 	if (conteudo_linhaAtual[0] == '>' or conteudo_linhaAtual[0] == '@'):
 		cabecalhos = cabecalhos + '\n' + conteudo_linhaAtual.strip()
