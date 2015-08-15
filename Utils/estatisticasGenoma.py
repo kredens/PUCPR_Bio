@@ -4,9 +4,11 @@ print ("<INICIO>")
 
 #recuperar os parametros do argumento
 parser = argparse.ArgumentParser()
-parser.add_argument("arquivoEntrada", type=string)
-args = parser.parse_args()
-arquivoEntrada = args.arquivoEntrada
+parser.add_argument("-a", action="store_true")
+#args = parser.parse_args()
+args = parser.parse_know_args()
+arquivoEntrada = args[0]
+print("Processando arquivo: " + arquivoEntrada)
 
 #arquivo = input("Nome do Arquivo: ")
 #arquivoEntrada = open(arquivo, 'r')
