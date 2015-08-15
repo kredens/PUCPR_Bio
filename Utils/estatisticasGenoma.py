@@ -4,25 +4,13 @@ print ("<INICIO>")
 
 #recuperar os parametros do argumento
 parser = argparse.ArgumentParser()
-parser.add_argument("-a", action="store_true")
-#args = parser.parse_args()
-args = parser.parse_known_args()
-arquivo = str(args[0])
-print("Processando arquivo: " + arquivo)
-
-if ( args[0].a ):
-	arquivo = str(args[0])
-else:
-	#para perguntar qual o nome do arquivo
-	arquivo = input("Nome do Arquivo: ")
-
-#abrir o arquivo
-arquivoEntrada = open(arquivo, 'r')
+parser.add_argument("arquivoEntrada", type=argparse.FileType('r'))
+args = parser.parse_args()
+arquivoEntrada = args.arquivoEntrada
 
 conteudo_DNA = ""
 cabecalhos = ""
 
-print("Processando arquivo: " + arquivo)
 for conteudo_linhaAtual in arquivoEntrada:
 	if (conteudo_linhaAtual[0] == '>' or conteudo_linhaAtual[0] == '@'):
 		cabecalhos = cabecalhos + '\n' + conteudo_linhaAtual.strip()
@@ -40,7 +28,7 @@ for x in range (0, len(conteudo_DNA)):
 
 conteudo_DNA_tamanho = len(conteudo_DNA)
 CG = (((simbolos["C"]+simbolos["c"])+(simbolos["A"]+simbolos["a"]))/(conteudo_DNA_tamanho))*100
-print("Arquivo....................: " +      arquivo   )
+print("Arquivo....................: " +      arquivoEntrada.name   )
 print("Cabecalho(s)...............: " +      cabecalhos   )
 print("Tamanho DNA................: " + str( conteudo_DNA_tamanho   ) ) 
 print("Numero de Bases A..........: " + str(simbolos["A"]+simbolos["a"]))
