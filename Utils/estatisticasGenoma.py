@@ -6,7 +6,7 @@ print ("<INICIO>")
 parser = argparse.ArgumentParser()
 parser.add_argument("-a", action="store_true")
 #args = parser.parse_args()
-args = parser.parse_know_args()
+args = parser.parse_known_args()
 arquivoEntrada = args[0]
 print("Processando arquivo: " + arquivoEntrada)
 
