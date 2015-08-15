@@ -1,0 +1,11 @@
+teste.fasta 4
+teste.fasta 4
+teste.fasta 4
+teste.fasta 4
+teste.fasta 4
+teste.fasta 4 
+teste.fasta 4 
+teste.fasta 4 
+teste.fasta 17 VsvWDSf
+teste.fasta 17 vVWsfSD
+teste.fasta 17 DVvWfsS

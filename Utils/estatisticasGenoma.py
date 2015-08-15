@@ -49,8 +49,10 @@ del simbolos["G"]
 del simbolos["g"]
 
 basesAmbiguas=0
+basesAmbiguas_lista = ""
 for base, total in simbolos.items():
 	basesAmbiguas = basesAmbiguas + total
+	basesAmbiguas_lista += base 
 
 print("Total de Outros........: " + str(basesAmbiguas))
 
@@ -58,4 +60,24 @@ if (basesAmbiguas != 0):
 	print("Bases Ambiguas " + str(simbolos))
 
 print("Conteudo CG.............: " + str(CG) + "%")
+
+
+#escrever resultado em um arquivo final
+arquivoResumo = open("resumo.txt", "a")
+arquivoResumo.write( arquivoEntrada.name + " " + str(conteudo_DNA_tamanho) + " " + basesAmbiguas_lista + "\n" )
+
 print ("<TERMINO>")
+
+
+
+
+
+
+
+
+
+
+
+
+
+
