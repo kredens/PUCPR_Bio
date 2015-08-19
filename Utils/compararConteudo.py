@@ -1,7 +1,5 @@
 import argparse
 
-print ("<INICIO>") 
-
 #recuperar os parametros do argumento
 parser = argparse.ArgumentParser()
 parser.add_argument("arquivo1", type=argparse.FileType('r'))
@@ -35,18 +33,11 @@ for x in range(0, len(dna1_conteudo)):
 	if( dna1_conteudo[x] != dna2_conteudo[x] ):
 		os_dnas_sao_iguais = False
 
-print("Arquivo 1....................: " +      arquivo1.name   )
-print("Cabecalho(s)...............: " +      dna1_cabecalho   )
-
-print("Arquivo 2....................: " +      arquivo2.name   )
-print("Cabecalho(s)...............: " +      dna2_cabecalho   )
-
+#print("Arquivo 1....................: " +      arquivo1.name   )
+#print("Cabecalho(s)...............: " +      dna1_cabecalho   )
+#print("Arquivo 2....................: " +      arquivo2.name   )
+#print("Cabecalho(s)...............: " +      dna2_cabecalho   )
 print("São iguais?...........: " + str(os_dnas_sao_iguais))
-
-print ("<TERMINO>")
-
-
-
 
 
 
