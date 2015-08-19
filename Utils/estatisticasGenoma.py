@@ -61,10 +61,9 @@ if (basesAmbiguas != 0):
 
 print("Conteudo CG.............: " + str(CG) + "%")
 
-
 #escrever resultado em um arquivo final
-arquivoResumo = open("resumo.txt", "a")
-arquivoResumo.write( arquivoEntrada.name + " " + str(conteudo_DNA_tamanho) + " " + basesAmbiguas_lista + "\n" )
+#arquivoResumo = open("resumo.txt", "a")
+#arquivoResumo.write( arquivoEntrada.name + " " + str(conteudo_DNA_tamanho) + " " + basesAmbiguas_lista + "\n" )
 
 print ("<TERMINO>")
 

@@ -6,3 +6,5 @@ e colocar o conteúdo:
 
 alias BIO_compararConteudo='python3 /home/Bio/PUCPR_Bio/Utils/compararConteudo.py'
 alias BIO_estatisticasGenoma='python3 /home/Bio/PUCPR_Bio/Utils/estatisticasGenoma.py'
+
+alias BIO_compararSequencias='/home/Bio/PUCPR_Bio/Utils/./compararSequencias.sh'

@@ -11,5 +11,17 @@ echo "Comparando conteúdo..."
 python3 compararConteudo.py $1 $2
 echo " "
 echo " "
+echo "----------------------------------------------------------------------------"
+echo " "
+echo "Extraindo estatísticas 1..."
+python3 estatisticasGenoma.py $1
+echo " "
+echo " "
+echo "----------------------------------------------------------------------------"
+echo " "
+echo "Extraindo estatísticas 2..."
+python3 estatisticasGenoma.py $2
+echo " "
+echo " "
 echo "--------------------------- T E R M I N O ----------------------------------"
 echo " "
