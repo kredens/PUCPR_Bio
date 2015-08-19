@@ -1,0 +1,8 @@
+Para configurar para que os comandos possam ser executados de qualquer lugar, é preciso alterar o arquivo:
+
+/etc/bashrc
+
+e colocar o conteúdo:
+
+alias BIO_compararConteudo='python3 /home/Bio/PUCPR_Bio/Utils/compararConteudo.py'
+alias BIO_estatisticasGenoma='python3 /home/Bio/PUCPR_Bio/Utils/estatisticasGenoma.py'
