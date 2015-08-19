@@ -1,2 +1,15 @@
+echo " "
+echo "--------------------------- I N I C I O ------------------------------------"
+echo " "
+echo "Comparando MD5..."
 md5sum $1 $2
+echo " "
+echo " "
+echo "----------------------------------------------------------------------------"
+echo " "
+echo "Comparando conteúdo..."
 python3 compararConteudo.py $1 $2
+echo " "
+echo " "
+echo "--------------------------- T E R M I N O ----------------------------------"
+echo " "
