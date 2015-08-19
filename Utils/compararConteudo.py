@@ -15,6 +15,7 @@ dna1_cabecalho = ""
 dna2_cabecalho = ""
 
 os_dnas_sao_iguais = True
+quantidade_de_bases_diferentes = 0
 
 for tmp_linhaAtual in arquivo1:
 	if (tmp_linhaAtual[0] == '>' or tmp_linhaAtual[0] == '@'):
@@ -37,15 +38,4 @@ for x in range(0, len(dna1_conteudo)):
 #print("Cabecalho(s)...............: " +      dna1_cabecalho   )
 #print("Arquivo 2....................: " +      arquivo2.name   )
 #print("Cabecalho(s)...............: " +      dna2_cabecalho   )
-print("São iguais?...........: " + str(os_dnas_sao_iguais))
-
-
-
-
-
-
-
-
-
-
-
+print("São iguais?........................: " + str(os_dnas_sao_iguais))
