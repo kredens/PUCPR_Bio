@@ -12,10 +12,12 @@ from subprocess import call
 parser = argparse.ArgumentParser()
 parser.add_argument("minblock", type=int)
 parser.add_argument("maxblock", type=int)
+parser.add_argument("nomeArquivoFasta", type=str)
 parser.add_argument("desviomax", type=int)
 args = parser.parse_args()
 minblock = args.minblock
 maxblock = args.maxblock
+arquivoAtual = args.nomeArquivoFasta
 desviomax = args.desviomax
 address = os.getcwd()
 #Excluindo pastas TEMP e RESULTS caso elas existam
@@ -28,41 +30,38 @@ if(minblock <= maxblock and minblock > 0):
 	#Localizando o endereco atual
 	os.makedirs(address + "/temp")
 	os.makedirs(address + "/RESULTS")
-	#Descobrindo o numero de arquivos de genomas
-	numArquivosEntrada = nameAllfiles(address, "ENTERFILES", "allFilesName")
-	#Iniciando o processamento para cada um dos arquivos
-	if (numArquivosEntrada != 0):
-		allFilesName = open(address + "/temp/allFilesName.txt")
-		relatorioPrincipal = open(address+"/RESULTS/MainResults.txt", 'w')
-		relatorioPrincipal.write("MAIN RESULTS:\n")
-		for arquivoAtual in allFilesName:
-			print("Arquivo sendo processado:"+arquivoAtual)
-			#Criando Arquivo de Resultado para Este Genoma
-			f = open(address+"/RESULTS/"+"R_"+arquivoAtual[:-1]+".txt", 'w')
-			f.write("RESULTADOS DO ARQUIVOS: "+arquivoAtual+"\n"+"*"*10+"\n")
-			#Separando em blocos dos tamanhos minimo e maximo
-			numArquivosBlocos = sdb(minblock,maxblock,"ENTERFILES/"+arquivoAtual[:-1])
-			#Descobrindo o nome dos arquivos com blocos
-			nameAllfiles(address, "temp/RD", "allBlocksFiles")
-			allBlocksFiles = open(address + "/temp/allBlocksFiles.txt")
-			for arquivoBlocoAtual in allBlocksFiles:
-				#Descobrindo as palavras Principais
-				palavrasPrincipais(arquivoBlocoAtual[:-1], address)
-				listaPalavras = open(address + "/temp/MostUsedWords_"+arquivoBlocoAtual[:-1])
-				for palavraAtual in listaPalavras:
-					#Achando as ocorrencias da palavra
-					listaPosicoes = achaPosicaoPalavraNoTexto(palavraAtual[:-1], arquivoBlocoAtual[:-1], address)
-					numeroDeVezesQueAparece = len(listaPosicoes)
-					#Caso tenha aparecido apenas uma ou duas vezes nao ha como calcular o desvio padrao
-					if (numeroDeVezesQueAparece > 2):
-						devPadrao = numpy.std(listaPosicoes)
-						f.write("***Block (Size/Deplacement): "+arquivoBlocoAtual[:-1]+", Genome Block: "+palavraAtual[:-1]+", qtd: "+str(numeroDeVezesQueAparece)+" ,Std Deviation: "+str(devPadrao)+"\n")
-						if (devPadrao <= desviomax):
-							relatorioPrincipal.write("***Genome: "+arquivoAtual[:-1]+", Block (Size/Deplacement): "+arquivoBlocoAtual[:-1]+\
-								", Genome Block: "+palavraAtual[:-1]+", qtd: "+str(numeroDeVezesQueAparece)+" ,Std: "+str(devPadrao)+"\n")
-			#shutil.rmtree(address + "/temp/RD")	
-	else:
-		print("ERRO FINDING THE ENTERFILES, BE SURE ALL FILES IN THE ENTERFILES DIRC ARE GENOME FASTA FILES")
+	#Iniciando o processamento
+	relatorioPrincipal = open(address+"/RESULTS/MainResults.txt", 'w')
+	relatorioPrincipal.write("MAIN RESULTS:\n")
+	#Criando Arquivo de Resultado para Este Genoma
+	f = open(address+"/RESULTS/"+"R_"+arquivoAtual+".txt", 'w')
+	f.write("RESULTADOS DO ARQUIVOS: "+arquivoAtual+"\n"+"*"*10+"\n")
+	#Separando em blocos dos tamanhos minimo e maximo
+	numArquivosBlocos = sdb(minblock,maxblock,arquivoAtual)
+	#Descobrindo o nome dos arquivos com blocos
+	nameAllfiles(address, "temp/RD", "allBlocksFiles")
+	allBlocksFiles = open(address + "/temp/allBlocksFiles.txt")
+	for arquivoBlocoAtual in allBlocksFiles:
+		#Descobrindo as palavras Principais
+		palavrasPrincipais(arquivoBlocoAtual[:-1], address)
+		listaPalavras = open(address + "/temp/MostUsedWords_"+arquivoBlocoAtual[:-1])
+		for palavraAtual in listaPalavras:
+			#Achando as ocorrencias da palavra
+			listaPosicoes = achaPosicaoPalavraNoTexto(palavraAtual[:-1], arquivoBlocoAtual[:-1], address)
+			numeroDeVezesQueAparece = len(listaPosicoes)
+			#Caso tenha aparecido apenas uma ou duas vezes nao ha como calcular o desvio padrao
+			if (numeroDeVezesQueAparece > 3):
+				listaFinal = []
+				for Controle in range (1, len(listaPosicoes)+1):
+					listaFinal.append(listaPosicoes[Controle-1]-listaPosicoes[Controle])
+				CoefVariacao = ((numpy.std(listaFinal)/numpy.mean(listaFinal))*100)
+				f.write("***Block (Size/Displacement): "+arquivoBlocoAtual[:-1]+", Genome Block: "+palavraAtual[:-1]+", qtd: "\
+					+str(numeroDeVezesQueAparece)+" ,Variation Coeficient: "+str(CoefVariacao)+"%\n")
+				if (CoefVariacao <= desviomax):
+					relatorioPrincipal.write("***Genome: "+arquivoAtual+", Block (Size/Displacement): "+arquivoBlocoAtual[:-1]+\
+						", Genome Block: "+palavraAtual[:-1]+", qtd: "+str(numeroDeVezesQueAparece)+" ,Variation Coeficient: "+str(CoefVariacao)+"%\n")
+	#shutil.rmtree(address + "/temp/RD")	
+
 else:
 	print("THE MINIMUM SIZE MUST BE, AT LEST AS BIG AS THE MAXIMUM SIZE, AND IT CANNOT BE IQUAL TO 0")
 #shutil.rmtree(address + "/temp")
